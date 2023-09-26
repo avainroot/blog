@@ -2,4 +2,4 @@
 
 - Based on NextJS and Typescript
 - Strapi Backend
-- This is an example of a live project, but is the final product
+- This is an example of a live project, but is not the final product
