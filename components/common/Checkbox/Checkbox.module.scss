@@ -1,0 +1,109 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.Checkbox {
+    input {
+        display: none;
+    }
+
+    input:checked + label[data-color="blue"]:before {
+        background: $color-primary;
+        border: 1px solid $color-primary;
+    }
+
+    input:checked + label[data-color="white"]:before {
+        background: white;
+        border: 1px solid $color-border;
+    }
+
+    input:checked + label:after {
+        opacity: 1 !important;
+    }
+
+    .isPointer &:hover {
+        label:before {
+            border: 1px solid $color-primary !important;
+        }
+    }
+
+    label {
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        padding-left: 40px;
+        display: inline-block;
+        vertical-align: middle;
+
+        a {
+            position: relative;
+            color: $color-primary;
+            text-decoration: none;
+            font-weight: 500;
+            white-space: nowrap;
+
+            .isPointer &:hover,
+            .isTouch &:active {
+                text-decoration: underline;
+            }
+
+            &[data-icon]:after {
+                position: absolute;
+                content: '';
+                display: block;
+                right: -25px;
+                top: 0px;
+                width: 27px;
+                height: 25px;
+                background-image: url('~images/link.svg');
+
+                @include tablet {
+                    top: -3px;
+                    right: -25px;
+                }
+            }
+        }
+
+        &:before {
+            position: absolute;
+            content: "";
+            display: block;
+            left: 2px;
+            top: 4px;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            background: white;
+            border: 1px solid $color-border;
+
+            .isPointer & {
+                transition: 0.1s background $ease-power2-out, 0.1s border $ease-power2-out;
+            }
+        }
+
+        &[data-color="blue"]:after {
+            border-color: #ffffff;
+        }
+
+        &[data-color="white"]:after {
+            border-color: $color-primary;
+        }
+
+        &:after {
+            position: absolute;
+            content: "";
+            opacity: 0;
+            pointer-events: all;
+            left: 10px;
+            top: 9px;
+            width: 4px;
+            height: 8px;
+            border: solid;
+            border-width: 0 1px 1px 0;
+            transform: rotate(45deg);
+
+            .isPointer & {
+                transition: 0.1s opacity $ease-power2-out;
+            }
+        }
+    }
+}

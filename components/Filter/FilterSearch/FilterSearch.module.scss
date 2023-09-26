@@ -1,0 +1,134 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.search {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  &-close {
+    width: 40px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &_text {
+      color: $color-primary-dark;
+      font-weight: 500;
+      line-height: 1;
+      cursor: pointer;
+      overflow: hidden;
+      min-width: 0;
+      white-space: nowrap;
+      opacity: 0;
+      transition: min-width 0s ease-in-out .3s, opacity .3s ease-out 0s;
+    }
+  }
+  &-button {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: width .3s ease-in-out 0s;
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: $color-primary;
+      transition: all .1s ease-in-out;
+    }
+  }
+  
+  &[data-show=true] {
+    .search-button {
+      pointer-events: none;
+      width: 40px;
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    .search-close_text {
+      min-width: 50px;
+      opacity: 1;
+      transition: min-width .3s ease-in-out .4s, opacity .4s ease-in .4s;
+    }
+    .wrapper {
+      width: 320px;
+      min-width: 320px;
+      grid-template-columns: 40px 1fr 40px;
+      @include mobile {
+        min-width: calc(334px / 375px * 100vw - 60px);
+      }
+      input {
+        opacity: 1;
+        transition: opacity .3s ease-in .3s;
+      }
+    }
+  }
+  &-mobile {
+    width: 100%;
+    .wrapper {
+      width: 100%;
+      grid-template-columns: 40px 1fr;
+      input {
+        opacity: 1;
+      }
+    }
+    .search-button {
+      svg {
+        width: 16px;
+        height: 16px;
+        fill: rgba(0, 0, 0, .85);
+      }
+    }
+  }
+}
+.wrapper {
+  width: 48px;
+  min-width: 48px;
+  border-radius: 20px;
+  height: 100%;
+  transition: all .5s ease-in-out;
+  background: white;
+  display: grid;
+  grid-template-columns: 48px 1fr 40px;
+  overflow: hidden;
+  position: relative;
+  &>* {
+    position: relative;
+    z-index: 1;
+  }
+  input {
+    outline: none;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1;
+    min-width: 0;
+    opacity: 0;
+    transition: opacity .3s ease-in-out 0s;
+    &::placeholder {
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 1;
+      color: rgba(0, 0, 0, .25);
+    }
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    border: 1px solid $color-border;
+    border-radius: 24px;
+    pointer-events: none;
+  }
+}

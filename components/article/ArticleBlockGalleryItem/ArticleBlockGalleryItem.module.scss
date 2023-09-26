@@ -1,0 +1,90 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.ArticleBlockGalleryItem {
+    $animation-duration: 0.6s;
+
+    position: absolute;
+    top: 0;
+    width: 100%;
+    visibility: hidden;
+    transition: $animation-duration visibility step-end;
+
+    @include mobile {
+        display: block;
+    }
+
+    &.active {
+        position: relative;
+        visibility: inherit;
+        transition: $animation-duration visibility step-start;
+    }
+
+    &[data-direction="right"] &-content{
+        animation: hide-content-right $animation-duration both $ease-power2-out;
+    }
+
+    &[data-direction="left"] &-content {
+        animation: hide-content-left $animation-duration both $ease-power2-out;
+    }
+
+    &[data-direction="right"].active &-content {
+        animation: show-content-right $animation-duration both $ease-power2-out .5s;
+    }
+
+    &[data-direction="left"].active &-content {
+        animation: show-content-left $animation-duration both $ease-power2-out .5s;
+    }
+
+    @keyframes hide-content-right {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes hide-content-left {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes show-content-right {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes show-content-left {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    &-content {
+        text-align: center;
+        color: $color-text-disabled;
+        margin-top: 10px;
+
+        @include tablet {
+            margin-top: 8px;
+        }
+
+        @include mobile {
+            display: block;
+            margin-top: 10px;
+        }
+    }
+
+}

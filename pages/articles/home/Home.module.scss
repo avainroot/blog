@@ -1,0 +1,214 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.HomePage {
+    &-articles {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        padding: 72px 0;
+
+        @include tablet {
+            padding: 58px 0 52px;
+        }
+
+        @include mobile {
+            padding: 48px 0;
+        }
+
+        &Wrapper {
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1040px;
+            width: calc(100% - 160px);
+
+            @include tablet {
+                width: 100%;
+            }
+
+            @include mobile {
+                width: 334px / 375px * 100%;
+            }
+
+            > h1 {
+                width: 100%;
+                text-align: left;
+                color: $color-primary;
+
+                @include tablet {
+                    width: 592px / 768px * 100%;
+                }
+            }
+        }
+
+
+        &Content {
+            position: relative;
+            width: 100%;
+            padding: 72px 0 28px;
+
+            @include tablet {
+                padding: 38px 0 0;
+            }
+
+            @include mobile {
+                padding: 48px 0 32px;
+            }
+        }
+
+        &Pattern {
+            position: absolute;
+            left: 50%;
+            top: 606px;
+            width: 720px / 1040px * 100%;
+            transform: translate(-50%, -50%);
+
+            @include tablet {
+                display: none;
+            }
+
+            @include mobile {
+                display: none;
+            }
+
+            &Aspect {
+                width: 100%;
+                height: 0;
+                padding-top: 100%;
+                background-image: url('~images/patternMedium.png');
+                background-size: cover;
+            }
+        }
+
+        &Link {
+            @include tablet {
+                position: absolute !important;
+                top: -6px;
+                right: 88px / 768px * 100%;
+            }
+        }
+    }
+
+    &-banner {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 72px 0;
+
+        @include tablet {
+            padding: 52px 0;
+        }
+
+        @include mobile {
+            padding: 48px 0;
+        }
+    }
+
+    &-videoGallery {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        padding: 75px 0 72px;
+
+        @include tablet {
+            padding: 52px 0;
+        }
+
+        @include mobile {
+            padding: 48px 0;
+        }
+
+        &Wrapper {
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1040px;
+            width: calc(100% - 160px);
+
+            @include tablet {
+                width: 592px / 768px * 100%;
+            }
+
+            @include mobile {
+                width: 286px / 375px * 100%;
+            }
+        }
+
+        h1 {
+            width: 100%;
+            text-align: left;
+            color: $color-primary;
+        }
+
+        &Content {
+            position: relative;
+            width: 100%;
+            padding: 51px 0 0;
+
+            @include tablet {
+                padding: 31px 0 0;
+            }
+
+            @include mobile {
+                padding: 40px 0 22px;
+            }
+        }
+
+        &Link {
+            position: absolute;
+            right: 0;
+            top: 2px;
+
+            @include tablet {
+                top: -3px;
+            }
+
+            @include mobile {
+                position: relative;
+                right: auto;
+                top: auto;
+            }
+        }
+    }
+
+    &-subscribeBanner {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 72px 0;
+
+        @include tablet {
+            padding: 54px 0;
+        }
+
+        @include mobile {
+            padding: 48px 0 44px;
+        }
+    }
+
+    &-subscribe {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 72px 0;
+
+        @include tablet {
+            padding: 54px 0;
+        }
+
+        @include mobile {
+            padding: 48px 0 44px;
+        }
+    }
+}

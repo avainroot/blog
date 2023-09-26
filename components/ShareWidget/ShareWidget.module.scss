@@ -1,0 +1,103 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+
+@keyframes shareIn {
+  0% {
+    transform: translateX(-150%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.ShareWidget {
+  position: fixed;
+  left: 10px;
+  top: 0;
+  height: 100%;
+  width: 0;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+  @include laptop {
+    left: 5px
+  }
+  @include tablet {
+    left: 0
+  }
+  @include mobile {
+    left: 0;
+    align-items: flex-end;
+  }
+  &-clap {
+    display: grid;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    span {
+      font-size: 10px;
+      text-align: center;
+    }
+    &.isClap,
+    &:hover {
+      path {
+        fill: $color-primary
+      }
+    }
+    svg {
+      width: 23px;
+    }
+  }
+  &-body {
+    background: white;
+    width: 30px;
+    min-width: 30px;
+    border-radius: 30px;
+    padding: 10px 0 5px;
+    display: grid;
+    gap: 5px;
+    transform: translateX(-150%);
+    // box-shadow: 0px 3px 6px 1px rgba(black, .1);
+    animation: shareIn .5s ease-in-out 2s forwards;
+    @include tablet {
+      border-radius: 0 10px 10px 0;
+    }
+    @include mobile {
+      border-radius: 0 10px 0 0;
+    }
+  }
+  &-social {
+    display: grid;
+    gap: 5px;
+    button {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      &:hover,
+      &:active {
+        span {
+          background-size: contain, 0 0;
+        }
+      }
+      span {
+        width: 75%;
+        height: 75%;
+        display: block;
+        background-size: 0 0, contain;
+        &[data-id="fb"] {
+          background-image: url('~images/shareFbHover.svg'), url('~images/shareFb.svg');
+        }
+        &[data-id="in"] {
+          background-image: url('~images/shareInHover.svg'), url('~images/shareIn.svg');
+        }
+        &[data-id="em"] {
+          background-image: url('~images/shareEmHover.svg'), url('~images/shareEm.svg');
+        }
+      }
+    }
+  }
+}

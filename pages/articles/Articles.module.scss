@@ -1,0 +1,41 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.PostsPage {
+    min-height: 100vh;
+    flex-direction: row;
+    align-items: stretch;
+    &-articles {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 0 72px 0;
+
+        &Wrapper {
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1040px;
+            width: calc(100% - 160px);
+
+            @include tablet {
+                width: 592px / 768px * 100%;
+            }
+
+            @include mobile {
+                width: 334px / 375px * 100%;
+            }
+        }
+
+        &Content {
+            position: relative;
+            width: 100%;
+            padding: 0 0 40px;
+        }
+    }
+}

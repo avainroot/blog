@@ -1,0 +1,100 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.Cursor {
+    $animation-duration: 0.4s;
+
+    pointer-events: none;
+    position: fixed;
+    border-radius: 100%;
+    z-index: $z-cursor;
+    visibility: hidden;
+    transform: scale(0) rotate(-720deg);
+    transition: $animation-duration transform $ease-power2-out, $animation-duration visibility step-end;
+
+    &[data-cursor="plus"] {
+        width: 60px;
+        height: 60px;
+        margin-left: -30px;
+        margin-top: -30px;
+        background: rgba($color-primary, 0.85);
+
+        &:after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 10px;
+            background: white;
+            top: 50%;
+            left: 50%;
+            margin-left: -1px;
+            margin-top: -5px;
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 10px;
+            background: white;
+            top: 50%;
+            left: 50%;
+            margin-top: -1px;
+            margin-left: -5px;
+        }
+    }
+
+    &[data-cursor="play"] {
+        background: white;
+        width: 144px;
+        height: 144px;
+        margin-left: -72px;
+        margin-top: -72px;
+
+        @include tablet {
+            width: 80px;
+            height: 80px;
+            margin-left: -40px;
+            margin-top: -40px;
+        }
+
+        @include mobile {
+            width: 56px;
+            height: 56px;
+            margin-left: -28px;
+            margin-top: -28px;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 24px;
+            height: 25px;
+            margin-left: -12px;
+            margin-top: -12px;
+            background-image: url('~images/play.svg');
+            background-size: cover;
+
+            @include mobile {
+                width: 17px;
+                height: 16px;
+                margin-left: -8px;
+                margin-top: -8px;
+                background-image: url('~images/playSmall.svg');
+            }
+        }
+    }
+
+
+    &.visible {
+        visibility: inherit;
+        transform: scale(1);
+        transition: $animation-duration transform $ease-power2-out, $animation-duration visibility step-start;
+    }
+
+    .isTouch & {
+        display: none;
+    }
+}

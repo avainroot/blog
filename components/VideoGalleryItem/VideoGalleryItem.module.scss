@@ -1,0 +1,189 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.VideoGalleryItem {
+    $animation-duration: 0.6s;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    transition: $animation-duration visibility step-end;
+
+    @include mobile {
+        display: block;
+    }
+
+    &.active {
+        position: relative;
+        visibility: inherit;
+        transition: $animation-duration visibility step-start;
+    }
+
+    &[data-direction="right"] &-contentLeft,
+    &[data-direction="right"] &-contentRight {
+        animation: hide-content-right $animation-duration both $ease-power2-out;
+    }
+
+    &[data-direction="left"] &-contentLeft,
+    &[data-direction="left"] &-contentRight {
+        animation: hide-content-left $animation-duration both $ease-power2-out;
+    }
+
+    &[data-direction="right"].active &-contentLeft,
+    &[data-direction="right"].active &-contentRight {
+        animation: show-content-right $animation-duration both $ease-power2-out .5s;
+    }
+
+    &[data-direction="left"].active &-contentLeft,
+    &[data-direction="left"].active &-contentRight {
+        animation: show-content-left $animation-duration both $ease-power2-out .5s;
+    }
+
+    @keyframes hide-content-right {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes hide-content-left {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes show-content-right {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes show-content-left {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    &-content {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding-top: 72px;
+
+        @include tablet {
+            padding-top: 40px;
+        }
+
+        @include mobile {
+            display: block;
+            padding-top: 32px;
+        }
+
+        &Left {
+            flex: 0 0 320px;
+
+            @include tablet {
+                flex: 0 0 183px;
+            }
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+
+        &Right {
+            width: 440px / 1040px * 100%;
+            padding-right: 120px / 1040px * 100%;
+            box-sizing: content-box;
+
+            @include tablet {
+                width: 252px / 592px * 100%;
+                padding-right: 68px / 592px * 100%;
+            }
+
+            @include mobile {
+                width: 100%;
+                padding-right: 0;
+            }
+        }
+    }
+
+    &-subtitle {
+        color: $color-primary;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        font-weight: 500;
+
+        @include tablet {
+            margin-bottom: 8px;
+        }
+    }
+
+    h2 {
+        color: $color-primary;
+        margin-bottom: 39px;
+
+        @include tablet {
+            margin-bottom: 20px;
+        }
+
+        @include mobile {
+            margin-bottom: 24px;
+        }
+    }
+
+    &-duration,
+    &-durationMobile {
+        color: $color-text;
+
+        b {
+            color: $color-primary;
+        }
+
+        @include mobile {
+            display: none;
+        }
+    }
+
+    &-caption {
+        color: $color-text-secondary;
+        margin-bottom: 16px;
+        font-weight: 500;
+
+        @include tablet {
+            margin-bottom: 8px;
+        }
+
+        @include mobile {
+            display: none;
+        }
+    }
+
+    p {
+        color: $color-text;
+
+        @include mobile {
+            margin-bottom: 24px;
+        }
+    }
+
+    &-durationMobile {
+        display: none;
+
+        @include mobile {
+            display: block;
+        }
+    }
+}

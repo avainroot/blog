@@ -1,0 +1,314 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.MediaGalleryItem {
+    $animation-duration: 0.6s;
+
+    position: relative;
+    width: 100%;
+
+    &-aspect {
+        width: 100%;
+        height: 0;
+        padding-top: 585px / 1040px * 100%;
+
+        @include mobile {
+            padding-top: 216px / 286px * 100%;
+        }
+    }
+
+    &-wrapper {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: black;
+    }
+
+    &-content {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    &-image {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    &-arrow {
+        $show-duration: 0.35s;
+
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 20%;
+
+        &[data-type="video"] {
+            $hover-zone-decrease-for-video: 120px;
+            top: $hover-zone-decrease-for-video / 2;
+            height: calc(100% - $hover-zone-decrease-for-video);
+
+            @include mobile {
+                top: 30%;
+                height: 40%;
+            }
+        }
+
+        &:hover &-figure,
+        .isTouch & &-figure {
+            transform: scaleX(1);
+        }
+
+        &.right:hover:before,
+        &.right:hover:after,
+        &.left:hover:before,
+        &.left:hover:after {
+            opacity: 1;
+            transition: $show-duration transform $ease-power2-out, $show-duration / 3 opacity;
+        }
+
+        &.right:hover:before,
+        .isTouch &.right:before {
+            transform: translateX(0) rotate(45deg);
+        }
+        &.right:hover:after,
+        .isTouch &.right:after {
+            transform: translateX(0) rotate(-45deg);
+        }
+        &.left:hover:before,
+        .isTouch &.left:before {
+            transform: translateX(0) rotate(-45deg);
+        }
+        &.left:hover:after,
+        .isTouch &.left:after {
+            transform: translateX(0) rotate(45deg);
+        }
+
+        &.left {
+            left: 0;
+        }
+
+        &.left &-figure {
+            left: -1px;
+            background-image: url('~images/mediaPrev.svg');
+            transform-origin: 0 50%;
+        }
+
+        &.right {
+            right: 0;
+        }
+
+        &.right &-figure {
+            right: -1px;
+            background-image: url('~images/mediaNext.svg');
+            transform-origin: 100% 50%;
+        }
+
+        &.right:before {
+            right: 24px;
+            transform: translateX(250%) rotate(-145deg);
+
+            @include tablet {
+                right: 9px;
+            }
+
+            @include mobile {
+                right: 11px;
+            }
+        }
+
+        &.right:after {
+            right: 24px;
+            transform: translateX(250%) rotate(145deg);
+
+            @include tablet {
+                right: 9px;
+            }
+
+            @include mobile {
+                right: 11px;
+            }
+        }
+
+        &.left:before {
+            left: 24px;
+            transform: translateX(-250%) rotate(145deg);
+
+            @include tablet {
+                left: 9px;
+            }
+
+            @include mobile {
+                left: 9px;
+            }
+        }
+
+        &.left:after {
+            left: 24px;
+            transform: translateX(-250%) rotate(-145deg);
+
+            @include tablet {
+                left: 9px;
+            }
+
+            @include mobile {
+                left: 9px;
+            }
+        }
+
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            height: 1px;
+            width: 7px;
+            border-radius: 1px;
+            background: #535353;
+            z-index: 1;
+            transition: $show-duration transform $ease-power2-out, $show-duration / 3 opacity $show-duration / 4;
+            opacity: 0;
+
+            .isTouch & {
+                opacity: 1;
+            }
+
+            @include tablet {
+                width: 5px;
+            }
+
+            @include mobile {
+                width: 5px;
+            }
+        }
+
+        &:before {
+            margin-top: -2px;
+        }
+
+        &:after {
+            margin-top: 3px;
+
+            @include tablet {
+                margin-top: 1px;
+            }
+
+            @include mobile {
+                margin-top: 1px;
+            }
+        }
+
+        &-figure {
+            position: absolute;
+            display: block;
+            width: 40px;
+            height: 177px;
+            top: 50%;
+            margin-top: -88px;
+            background-size: contain;
+            transform: scaleX(0);
+            transition: $show-duration transform $ease-power2-out;
+
+            @include tablet {
+                width: 22px;
+                height: 101px;
+                margin-top: -50px;
+            }
+
+            @include mobile {
+                width: 24px;
+                height: 104px;
+                margin-top: -52px;
+            }
+
+        }
+    }
+
+    &[data-direction="right"]:not(.active) &-arrow.right &-arrow-figure,
+    &[data-direction="left"]:not(.active) &-arrow.left &-arrow-figure {
+        transform: scaleX(1.1) scaleY(2);
+        opacity: 0;
+        transition: $animation-duration transform $ease-power2-out, $animation-duration opacity;
+    }
+
+    &-content {
+        animation: hide-media $animation-duration both $ease-power2-out;
+    }
+
+    &[data-direction="right"].active &-wrapper {
+        animation: show-media-right $animation-duration both $ease-power2-out;
+    }
+
+    &[data-direction="left"].active &-wrapper {
+        animation: show-media-left $animation-duration both $ease-power2-out;
+    }
+
+    &.active &-content {
+        animation: show-media $animation-duration both $ease-power2-out;
+    }
+
+    @keyframes hide-media {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1.1);
+            opacity: 0.6;
+        }
+    }
+
+    @keyframes show-media-right {
+        0% {
+            clip-path: ellipse(0% 50% at 100% 50%);
+            animation-timing-function: linear;
+        }
+        35% {
+            clip-path: ellipse(50% 70% at 100% 50%);
+            animation-timing-function: linear;
+        }
+        70% {
+            clip-path: ellipse(100% 150% at 100% 50%);
+            animation-timing-function: ease-out;
+        }
+        100% {
+            clip-path: ellipse(102% 300% at 100% 50%);
+        }
+    }
+
+    @keyframes show-media-left {
+        0% {
+            clip-path: ellipse(0% 50% at 0% 50%);
+            animation-timing-function: linear;
+        }
+        35% {
+            clip-path: ellipse(50% 70% at 0% 50%);
+            animation-timing-function: linear;
+        }
+        70% {
+            clip-path: ellipse(100% 150% at 0% 50%);
+            animation-timing-function: ease-out;
+        }
+        100% {
+            clip-path: ellipse(102% 300% at 0% 50%);
+        }
+    }
+
+    @keyframes show-media {
+        0% {
+            transform: scale(1.5);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+}

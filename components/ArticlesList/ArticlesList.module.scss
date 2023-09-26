@@ -1,0 +1,59 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.ArticlesList {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    &.list-for-desktop {
+        @include desktop {
+            gap: 48px 0;
+        }
+    }
+
+    &.scroll-for-desktop {
+        @include desktop {
+            gap: 0 40px;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            overflow-x: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            scrollbar-height: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+
+    &.scroll-for-tablet {
+        @include tablet {
+            gap: 0 20px;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            overflow-x: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            scrollbar-height: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+
+    &.list-for-tablet {
+        @include tablet {
+            gap: 40px 0;
+        }
+    }
+
+    @include mobile {
+        display: block;
+    }
+}

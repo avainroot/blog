@@ -1,0 +1,86 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.ArticleBlockQuote {
+    text-align: center;
+    position: relative;
+    margin: 144px 0;
+    color: $color-text;
+
+    @include mobile {
+        margin: 96px 0;
+    }
+
+    &-wrapper {
+        position: relative;
+        display: inline-block;
+        text-align: left;
+        width: 680px;
+        padding-bottom: 96px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 80px;
+            height: 80px;
+            background-image: url('~images/quote.svg');
+            background-size: cover;
+
+            @include tablet {
+                width: 64px;
+                height: 64px;
+            }
+
+            @include mobile {
+                right: auto;
+                bottom: auto;
+                top: 0;
+                left: 0;
+            }
+        }
+
+        @include tablet {
+            width: 428px / 768px * 100%;
+            padding-bottom: 64px;
+        }
+
+        @include mobile {
+            width: 286px / 375px * 100%;
+            padding-top: 104px;
+            padding-bottom: 0;
+        }
+    }
+
+
+    a {
+        color: $color-primary;
+        text-decoration: none;
+
+        @include tablet {
+            font-weight: 500;
+        }
+
+        @include mobile {
+            font-weight: 500;
+        }
+
+        .isPointer &:hover,
+        .isTouch &:active {
+            text-decoration: underline;
+        }
+    }
+
+    p + p {
+        margin-top: 50px;
+
+        @include tablet {
+            margin-top: 32px;
+        }
+
+        @include mobile {
+            margin-top: 32px;
+        }
+    }
+}

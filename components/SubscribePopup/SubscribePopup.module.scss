@@ -1,0 +1,119 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.SubscribePopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
+    transition: 0.3s visibility step-end;
+    z-index: 2;
+
+    @include mobile {
+        display: none;
+    }
+
+    &.isOpened {
+        visibility: inherit;
+        transition: 0.3s visibility step-start;
+    }
+
+    &.isOpened &-overlay {
+        opacity: 1;
+    }
+
+    &.isOpened &-panel {
+        opacity: 1;
+        transform: none;
+    }
+
+    &-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(white, 0.7);
+        opacity: 0;
+        transition: 0.3s opacity $ease-power2-out;
+    }
+
+    &-panel {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        opacity: 0;
+        transform: translateY(-24px);
+        transition: 0.3s opacity $ease-power2-out, 0.3s transform $ease-power2-out;
+        width: 100%;
+        background: $color-primary;
+        border-radius: 0 0 8px 8px;
+
+        &Content {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            max-width: 1040px;
+            width: calc(100% - 160px);
+            padding: 56px 0;
+            gap: 0 120px;
+
+            @include tablet {
+                width: 592px / 768px * 100%;
+                gap: 0 20px;
+            }
+        }
+
+        h2 {
+            color: white;
+            flex: 441 0;
+
+            @include tablet {
+                flex: 252 0;
+            }
+        }
+
+        [class=Subscribe] {
+            flex: 480 0;
+
+            @include tablet {
+                flex: 320 0;
+            }
+
+            [class^=Checkbox] label {
+                color: white;
+
+                font-size: 16px;
+                line-height: 24px;
+                letter-spacing: -0.16px;
+
+                a {
+                    color: white;
+
+                    &[data-icon]:after {
+                        top: 0px;
+                        background-image: url('~images/linkWhite.svg');
+                    }
+                }
+            }
+        }
+    }
+
+
+    &-close {
+        position: absolute;
+        top: 24px;
+        right: 40px;
+        width: 24px;
+        height: 24px;
+        background-image: url('~images/close.svg');
+        background-size: contain;
+
+        @include tablet {
+            top: 20px;
+            right: 20px;
+        }
+    }
+}

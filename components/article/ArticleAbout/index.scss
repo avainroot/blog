@@ -1,0 +1,198 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.ArticleAbout {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin: 144px 0;
+    padding: 68px 0;
+
+    @include tablet {
+        padding: 48px 0;
+    }
+
+    @include mobile {
+        margin: 96px 0;
+        padding: 84px 0 0;
+    }
+
+    &-pattern {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-position: 50% 50%;
+        background-image: url('~images/patternSemiMedium.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+
+        @include tablet {
+            background-image: url('~images/pattern.png');
+        }
+
+        @include mobile {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 280px / 515px * 100%;
+            background-color: $color-primary;
+            background-image: none;
+
+            &:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                mix-blend-mode: color-burn;
+                background-image: url('~images/patternBig.png');
+                background-size: 280% auto;
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+
+    &-wrapper {
+        position: relative;
+        display: inline-block;
+        text-align: left;
+        width: 880px;
+        border: 1px solid $color-border;
+        border-radius: 4px;
+        background: white;
+        padding: 127px 160px 60px;
+
+        @include tablet {
+            width: 632px / 768px * 100%;
+            padding: 88px 88px 56px;
+        }
+
+        @include mobile {
+            width: 334px / 375px * 100%;
+            padding: 88px 24px 32px;
+        }
+    }
+
+    &-text {
+        color: $color-text;
+        margin-bottom: 35px;
+
+        @include tablet {
+            margin-bottom: 24px;
+        }
+
+        @include mobile {
+            margin-bottom: 24px;
+        }
+
+        a {
+            color: $color-primary;
+            text-decoration: none;
+            font-weight: 500;
+
+            .isPointer &:hover,
+            .isTouch &:active {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &-infoWrapper {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @include mobile {
+            display: block;
+        }
+    }
+
+    &-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &Icon {
+            position: relative;
+            width: 80px;
+            height: 80px;
+
+            @include tablet {
+                width: 64px;
+                height: 64px;
+            }
+
+            @include mobile {
+                position: absolute;
+                top: -52px;
+                left: 24px;
+                width: 104px;
+                height: 104px;
+            }
+
+            img {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                border-radius: 100%;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+
+                &:first-child {
+                    border: 1px solid $color-border;
+
+                    @include mobile {
+                        background-color: white;
+                    }
+
+                }
+
+                &:last-child {
+                    width: 24px;
+                    height: 24px;
+                    border: 1px solid white;
+
+                    @include tablet {
+                        width: 16px;
+                        height: 16px;
+                    }
+
+                    @include mobile {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        &Content {
+            flex: 1 0;
+            padding-left: 24px;
+            color: $color-text;
+
+            b {
+                color: $color-text-secondary;
+            }
+
+            @include tablet {
+                padding-left: 16px;
+                font-size: 14px;
+                line-height: 22px;
+                letter-spacing: -0.16px;
+            }
+
+            @include mobile {
+                display: none;
+            }
+        }
+    }
+
+    &-readMore {
+        display: inline-block;
+    }
+
+}

@@ -1,0 +1,27 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.ArticleBlockAudio {
+    position: relative;
+    text-align: center;
+    margin: 96px 0 144px;
+
+    @include mobile {
+        margin: 48px 0 96px;
+    }
+
+    &-wrapper {
+        display: inline-block;
+        text-align: left;
+        max-width: 1040px;
+        width: calc(100% - 160px);
+
+        @include tablet {
+            width: 632px / 768px * 100%;
+        }
+
+        @include mobile {
+            width: 100%;
+        }
+    }
+}

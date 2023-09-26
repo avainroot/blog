@@ -1,0 +1,143 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.NavBarMenu {
+    display: none;
+
+    @include mobile {
+        display: block;
+    }
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: white;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-24px);
+    transition: 0.3s opacity $ease-power2-out, 0.3s transform $ease-power2-out, 0.3s visibility step-end;
+    overflow: auto;
+
+    &.isOpened {
+        opacity: 1;
+        visibility: inherit;
+        transform: none;
+        transition: 0.3s opacity $ease-power2-out, 0.3s transform $ease-power2-out, 0.3s visibility step-start;
+    }
+
+    &-wrapper {
+        position: relative;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    ul {
+        padding: 96px 44px 48px;
+    }
+
+    li {
+        display: block;
+
+        & + li {
+            margin-top: 24px;
+        }
+
+        a {
+            color: $color-primary;
+
+            &.isCurrent {
+                color: $color-primary;
+            }
+
+            .isPointer &:hover,
+            .isTouch &:active {
+                color: $color-primary;
+            }
+        }
+
+        &.DropItem {
+            &>span {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                svg {
+                    width: 24px;
+                    height: 24px;
+                    fill: $color-primary;
+                }
+            }
+            &>ul {
+                width: 100%;
+                padding: 0;
+                font-size: 25px;
+                line-height: 31px;
+                letter-spacing: -0.3px;
+                color: $color-text-disabled;
+                display: grid;
+                grid-gap: 8px;
+                padding: 0 0 0 16px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height .3s ease-in-out 0s;
+                &[data-show=true] {
+                    max-height: 1000px;
+                }
+                &>li {
+                    margin: 0;
+                    cursor: pointer;
+                    &:first-of-type {
+                        margin-top: 8px;
+                    }
+                }
+            }
+        }
+
+    }
+
+    &-subscribe {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        padding: 64px 0 98px;
+
+        &Pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: 50% 0;
+            background-image: url('~images/patternMenu.png');
+        }
+
+
+        &Content {
+            position: relative;
+            padding: 0 44px;
+        }
+
+        h2 {
+            color: $color-primary;
+            margin-bottom: 24px;
+            font-size: 25px;
+            line-height: 31px;
+            letter-spacing: -0.3px;
+            font-weight: 500;
+        }
+
+        &Footer {
+            position: relative;
+            color: $color-text-disabled;
+            margin-top: 40px;
+            font-size: 14px;
+            line-height: 18px;
+            letter-spacing: -0.14px;
+            text-align: center;
+        }
+    }
+}

@@ -1,0 +1,297 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.AudioPlayer {
+    position: relative;
+    width: 100%;
+    height: 208px;
+    overflow: hidden;
+
+    @include tablet {
+        height: 140px;
+    }
+
+    @include mobile {
+        height: 104px;
+    }
+
+    audio {
+        display: none;
+    }
+
+    input {
+        position: absolute;
+        width: calc(100% + 16px);
+        height: 100%;
+        top: 0;
+        left: -8px;
+        opacity: 0;
+    }
+
+
+    &-panel {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: #F0EFF9;
+        border-radius: 16px;
+
+        @include tablet {
+            border-radius: 8px;
+        }
+
+        @include mobile {
+            border-radius: 0;
+        }
+    }
+
+    &-progress {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 16px;
+        pointer-events: none;
+        overflow: hidden;
+
+        @include tablet {
+            border-radius: 8px;
+        }
+
+        @include mobile {
+            border-radius: 0;
+        }
+
+        svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    &-play {
+        position: absolute;
+        top: 32px;
+        left: 32px;
+        width: 144px;
+        height: 144px;
+        border-radius: 100%;
+        background-color: $color-primary;
+
+        @include tablet {
+            top: 30px;
+            left: 24px;
+            width: 80px;
+            height: 80px;
+        }
+
+        @include mobile {
+            top: 24px;
+            left: 20px;
+            width: 56px;
+            height: 56px;
+        }
+
+        .isPointer & {
+            transition: 0.2s background $ease-power2-out;
+        }
+
+        .isPointer &:hover,
+        .isTouch &:active {
+            background-color: $color-primary-dark;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            margin-left: -12px;
+            margin-top: -12px;
+            left: 50%;
+            top: 50%;
+            background-size: contain;
+            background-image: url('~images/playAudio.svg');
+
+            @include mobile {
+                width: 16px;
+                height: 16px;
+                margin-left: -8px;
+                margin-top: -8px;
+            }
+        }
+
+
+        &.isPlaying:after {
+            width: 20px;
+            height: 20px;
+            margin-left: -10px;
+            margin-top: -10px;
+            background-image: url('~images/pauseAudio.svg');
+
+            @include mobile {
+                width: 12px;
+                height: 12px;
+                margin-left: -6px;
+                margin-top: -6px;
+            }
+        }
+    }
+
+    &-contolsText {
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.2px;
+
+        @include tablet {
+            font-size: 14px;
+            line-height: 22px;
+            letter-spacing: -0.16px;
+        }
+
+        @include mobile {
+            font-size: 12px;
+            line-height: 24px;
+            letter-spacing: -0.1px;
+        }
+    }
+
+    &-controls {
+        position: relative;
+        color: $color-primary;
+        font-weight: 500;
+        pointer-events: none;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        padding: 32px 70px 32px 240px;
+
+        @include tablet {
+            padding: 16px 44px 16px 144px;
+        }
+
+        @include mobile {
+            justify-content: center;
+            padding: 20px 44px 20px 92px;
+        }
+
+        &Top {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            flex: 0 0 24px;
+
+            @include mobile {
+                display: none;
+            }
+        }
+
+        &Spectrum {
+            position: relative;
+            width: calc(100% + 4px);
+            height: 80px;
+
+            @include tablet {
+                width: calc(100% + 3px);
+                height: 64px;
+            }
+
+            @include mobile {
+                display: none;
+            }
+
+            canvas {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+            }
+        }
+
+        &Bottom {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            width: 100%;
+
+            @include mobile {
+                display: block;
+            }
+        }
+
+        &Title {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        &Time {
+            white-space: nowrap;
+            padding-left: 20px;
+
+            @include mobile {
+                padding-left: 0;
+            }
+        }
+    }
+
+    &-mini {
+        height: 104px;
+        .AudioPlayer {
+            &-panel {
+                border-radius: 0;
+            }
+            &-progress {
+                border-radius: 0;
+            }
+            &-play {
+                top: 24px;
+                left: 20px;
+                width: 56px;
+                height: 56px;
+                &:after {
+                    width: 16px;
+                    height: 16px;
+                    margin-left: -8px;
+                    margin-top: -8px;
+                }
+                &.isPlaying:after {
+                    width: 12px;
+                    height: 12px;
+                    margin-left: -6px;
+                    margin-top: -6px;
+                }
+            }
+            &-contolsText {
+                font-size: 12px;
+                line-height: 24px;
+                letter-spacing: -0.1px;
+            }
+            &-controls {
+                justify-content: center;
+                padding: 20px 44px 20px 92px;
+                &Top {
+                    display: none;
+                }
+                &Spectrum {
+                    display: none;
+                }
+                &Bottom {
+                    display: block;
+                }
+                &Time {
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+
+}

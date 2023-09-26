@@ -1,0 +1,51 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.ArticleBlockVideo {
+    text-align: center;
+    position: relative;
+    margin: 144px 0 144px;
+
+    @include tablet {
+        margin: 96px 0 144px;
+    }
+
+    @include mobile {
+        margin: 48px 0 96px;
+    }
+
+    &-wrapper {
+        display: inline-block;
+        text-align: left;
+        max-width: 1040px;
+        width: calc(100% - 160px);
+
+        @include tablet {
+            width: 592px / 768px * 100%;
+        }
+
+        @include mobile {
+            width: 334px / 375px * 100%;
+        }
+    }
+
+    &-aspect {
+        position: relative;
+        padding-top: 333px / 592px * 100%;
+        height: 0;
+    }
+
+    figcaption {
+        text-align: center;
+        color: $color-text-disabled;
+        margin-top: 10px;
+
+        @include tablet {
+            margin-top: 8px;
+        }
+
+        @include mobile {
+            margin-top: 10px;
+        }
+    }
+}

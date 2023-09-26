@@ -1,0 +1,165 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.ArticleSharing {
+    text-align: center;
+    position: relative;
+    margin: 144px 0;
+    color: $color-text;
+
+    @include mobile {
+        margin: 96px 0;
+    }
+
+    &-wrapper {
+        display: inline-block;
+        text-align: left;
+        width: 560px;
+
+        @include tablet {
+            width: 360px / 768px * 100%;
+        }
+
+        @include mobile {
+            width: 286px / 375px * 100%;
+        }
+    }
+
+
+    h2 {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        color: $color-primary;
+        margin-bottom: 14px;
+        gap: 0 32px;
+
+        @include mobile {
+            gap: 30px 0;
+            flex-direction: column-reverse;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        &:after {
+            content: '';
+            display: inline-block;
+            width: 88px;
+            height: 88px;
+            background-size: contain;
+            background-image: url('~images/toast.svg');
+            overflow: visible;
+            border-radius: 100%;
+            border: 1px solid $color-border;
+
+            @include tablet {
+                width: 64px;
+                height: 64px;
+            }
+
+            @include mobile {
+                align-self: center;
+            }
+        }
+    }
+
+    p {
+        margin-bottom: 40px;
+
+        @include tablet {
+            margin-bottom: 30px;
+        }
+
+        @include mobile {
+            margin-bottom: 30px;
+        }
+    }
+
+    p a {
+        color: $color-primary;
+        text-decoration: none;
+
+        @include tablet {
+            font-weight: 500;
+        }
+
+        @include mobile {
+            font-weight: 500;
+        }
+
+        .isPointer &:hover,
+        .isTouch &:active {
+            text-decoration: underline;
+        }
+    }
+
+    &-share {
+        border-top: 1px solid $color-border;
+        padding-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @include tablet {
+            padding-top: 32px;
+        }
+
+        @include mobile {
+            padding-top: 32px;
+        }
+
+        &Buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 0 32px;
+
+            @include tablet {
+                gap: 0 24px;
+            }
+
+            @include mobile {
+                gap: 0 24px;
+            }
+
+            button {
+                display: block;
+                width: 24px;
+                height: 24px;
+
+                span {
+                    display: inline-block;
+                    width: 100%;
+                    height: 100%;
+                    background-size: 0 0, contain;
+
+                    &[data-id="fb"] {
+                        background-image: url('~images/shareFbHover.svg'), url('~images/shareFb.svg');
+                    }
+
+                    &[data-id="tw"] {
+                        background-image: url('~images/shareTwHover.svg'), url('~images/shareTw.svg');
+                    }
+
+                    &[data-id="in"] {
+                        background-image: url('~images/shareInHover.svg'), url('~images/shareIn.svg');
+                    }
+
+                    &[data-id="em"] {
+                        background-image: url('~images/shareEmHover.svg'), url('~images/shareEm.svg');
+                    }
+
+                    &[data-id="web"] {
+                        background-image: url('~images/shareWebHover.svg'), url('~images/shareWeb.svg');
+                        background-repeat: no-repeat;
+                    }
+
+                    &:hover,
+                    &:active {
+                        background-size: contain, 0 0;
+                    }
+                }
+
+            }
+        }
+    }
+}

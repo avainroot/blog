@@ -1,0 +1,48 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.slider {
+  width: calc(100% - 160px) !important;
+  margin: 0 auto 40px;
+  max-width: 1040px;
+  overflow: visible !important;
+  @include tablet {
+    width: 592px / 768px * 100% !important;
+    margin: 24px auto;
+  }
+  @include mobile {
+    width: 334px / 375px * 100% !important;
+    margin: 24px auto 40px;
+  }
+
+  &[data-search=true]{
+    .slide:not(:first-of-type) {
+      &>* {
+        transform: translateY(100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      @for $i from 2 through 5 {
+        &:nth-child(#{$i}) {
+          &>*{
+            transition: transform .3s ease-in-out #{$i/10 - .2}s, opacity .3s ease-in-out #{$i/10 - .2}s
+          }
+        }
+      }
+    }
+  }
+
+}
+
+.slide {
+  width: auto !important;
+  &>*{
+    transition: transform .3s ease-out .5s, opacity .3s ease-out .5s, background 0s;
+  }
+}
+
+.searchSlide {
+  width: auto !important;
+  position: relative;
+  z-index: 1;
+}

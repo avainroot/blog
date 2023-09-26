@@ -1,0 +1,128 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.SubscribeBanner {
+    position: relative;
+    display: flex;
+    width: calc(100% - 160px);
+    max-width: 1040px;
+    align-items: flex-start;
+
+    @include tablet {
+        width: 592px / 768px * 100%;
+    }
+
+    @include mobile {
+        display: block;
+        width: 334px / 375px * 100%;
+        border-radius: 50vw 50vw 8px 8px;
+        border: 1px solid $color-border;
+        overflow: hidden;
+    }
+
+    &-images {
+        position: relative;
+        flex: 440 0;
+
+        @include tablet {
+            flex: 252 0;
+        }
+
+        @include mobile {
+            width: 100%;
+            overflow: hidden;
+
+        }
+
+        &Wrapper {
+            height: 0;
+            padding-top: 100%;
+
+            &:after {
+                @include mobile {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    width: 100%;
+                    height: 50%;
+                    background: white;
+                    border-top: 1px solid $color-border;
+                }
+            }
+        }
+    }
+
+    &-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        @include mobile {
+            top: -16%;
+            left: -16%;
+            width: 132%;
+            height: 132%;
+
+        }
+    }
+
+    &-image {
+        position: absolute;
+        top: 28px / 440px * 100%;
+        left: 28px / 440px * 100%;
+        width: 384px / 440px * 100%;
+        height: 384px / 440px * 100%;
+        border-radius: 100%;
+
+        @include mobile {
+            top: 43px / 334px * 100%;
+            left: 43px / 334px * 100%;
+            width: 248px / 334px * 100%;
+            height: 248px / 334px * 100%;
+            z-index: 1;
+        }
+    }
+
+    &-content {
+        flex: 600 0;
+        background: white;
+
+        @include tablet {
+            flex: 340 0;
+        }
+
+        &Wrapper {
+            padding: 80px 120px 0 40px;
+
+            @include laptop {
+                padding: calc(9.58vw + -58px) calc(35.12vw - 386px) 0 40px;
+            }
+
+            @include tablet {
+                padding: 0 0 0 20px;
+            }
+
+            @include mobile {
+                padding: 5px 24px 25px;
+            }
+        }
+
+        h1 {
+            margin-bottom: 53px;
+            color: $color-primary;
+
+            @include tablet {
+                margin-bottom: 27px;
+            }
+
+            @include mobile {
+                width: auto;
+                margin-bottom: 35px;
+                text-align: center;
+            }
+        }
+    }
+}

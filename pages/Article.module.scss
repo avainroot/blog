@@ -1,0 +1,222 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.ArticlePage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: $z-modal-page;
+    overflow-y: scroll; //to always show scrollbar (for modals and --scrollbar-width)
+    overflow-x: hidden;
+
+    @include mobile {
+        background: white;
+        animation: article-show-animation-mobile 0.5s linear;
+
+        @keyframes article-show-animation-mobile {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    }
+
+    &-image {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        animation: article-show-animation 1.0s both cubic-bezier(.9,.0,.6,.0);
+
+        @include mobile {
+            animation: none;
+            transform: none !important;
+            overflow: visible;
+            height: 56.57vw;
+            top: 65px;
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: -58px / 375px * 100vw;
+                left: -58px / 375px * 100vw;
+                right: -58px / 375px * 100vw;
+                bottom: -58px / 375px * 100vw;
+                background-size: cover;
+                background-image: url('~images/pattern.png');
+                animation: article-show-animation 1.0s both cubic-bezier(.9,.0,.6,.0);
+                display: none;
+            }
+        }
+
+        @keyframes article-show-animation {
+            0% {
+                clip-path: circle(0% at 50% 50%);
+            }
+
+            100% {
+                clip-path: circle(71% at 50% 50%);
+            }
+        }
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: article-show-animation-image 1.0s cubic-bezier(.9,.0,.6,.0);
+
+            @include mobile {
+                transform: none !important;
+                animation: none;
+            }
+
+            @keyframes article-show-animation-image {
+                0% {
+                    transform: scale(0.5);
+                }
+
+                100% {
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+
+
+    &-content {
+        position: relative;
+        background: white;
+        z-index: 1;
+        padding-top: 104px;
+        padding-bottom: 1px;
+
+        @include mobile {
+            padding-top: 38px;
+            margin-top: 13.2vw;
+            border-radius: 20px 20px 0 0;
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0%;
+            right: 0%;
+            height: 80vh;
+            top: -80vh;
+            background: linear-gradient(180deg, rgba(13, 12, 26, 0.0001) 50.57%, rgba(13, 12, 26, 0.32) 100%);
+            animation: article-show-animation-gradient 0.5s both cubic-bezier(.9,.0,.6,.0) 0.7s;
+
+            @keyframes article-show-animation-gradient {
+                0% {
+                    opacity: 0;
+                }
+
+                100% {
+                    opacity: 1;
+                }
+            }
+
+            @include mobile {
+                display: none;
+            }
+        }
+    }
+
+
+    &-recommended {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        margin: 144px 0 72px;
+
+        @include tablet {
+            margin: 190px 0 72px;
+        }
+
+        @include mobile {
+            margin: 94px 0 48px;
+        }
+
+        &Wrapper {
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+
+            @include tablet {
+                width: 100%;
+            }
+
+            @include mobile {
+                width: 334px / 375px * 100%;
+            }
+
+            > h2 {
+                text-align: left;
+                color: $color-primary;
+                max-width: 1040px;
+                width: calc(100% - 160px);
+
+                @include tablet {
+                    width: 592px / 768px * 100%;
+                }
+
+                @include mobile {
+                    width: 100%;
+                }
+            }
+        }
+
+        &ArrowsWrapper {
+            position: absolute;
+            max-width: 1040px;
+            width: calc(100% - 160px);
+
+            @include tablet {
+                width: 592px / 768px * 100%;
+            }
+
+            @include mobile {
+                display: none;
+            }
+        }
+
+        &Arrows {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0 8px;
+
+        }
+
+        &Content {
+            position: relative;
+            width: 100%;
+            padding: 54px 0 0;
+
+            @include tablet {
+                padding: 32px 0 0;
+            }
+
+            @include mobile {
+                padding: 40px 0 0;
+            }
+        }
+    }
+
+
+}

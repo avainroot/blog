@@ -1,0 +1,62 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.ArticleBlockImage {
+    position: relative;
+    text-align: center;
+    margin: 144px 0 144px;
+    font-size: 0;
+
+    @include tablet {
+        margin: 96px 0 144px;
+    }
+
+    @include mobile {
+        margin: 48px 0 96px;
+    }
+
+    &-wrapper {
+        display: inline-flex;
+        flex-flow: column;
+        align-items: center;
+        text-align: left;
+        max-width: 1040px;
+        width: calc(100% - 160px);
+
+        @include tablet {
+            width: 592px / 768px * 100%;
+        }
+
+        &:not(.Special){
+            @include mobile {
+                width: 334px / 375px * 100%;
+            }
+        }
+
+        &.Special {
+            @include mobile {
+                width: 100%;
+            }
+        }
+
+    }
+
+
+    img {
+        max-width: 100%;
+    }
+
+    figcaption {
+        text-align: center;
+        color: $color-text-disabled;
+        margin-top: 10px;
+
+        @include tablet {
+            margin-top: 8px;
+        }
+
+        @include mobile {
+            margin-top: 10px;
+        }
+    }
+}

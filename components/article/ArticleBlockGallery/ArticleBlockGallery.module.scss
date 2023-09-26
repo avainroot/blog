@@ -1,0 +1,34 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.ArticleBlockGallery {
+    position: relative;
+    text-align: center;
+    margin: 144px 0 144px;
+    font-size: 0;
+
+    @include tablet {
+        margin: 144px 0 144px;
+    }
+
+    @include mobile {
+        margin: 48px 0 96px;
+    }
+
+    &-wrapper {
+        position: relative;
+        display: inline-block;
+        text-align: left;
+        max-width: 1040px;
+        width: calc(100% - 160px);
+        z-index: 1;
+
+        @include tablet {
+            width: 592px / 768px * 100%;
+        }
+
+        @include mobile {
+            width: 334px / 375px * 100%;
+        }
+    }
+}

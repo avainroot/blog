@@ -1,0 +1,219 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.FeaturedGallery {
+    position: relative;
+    padding: 96px 0 72px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    @include tablet {
+        padding: 96px 0 52px;
+    }
+
+    @include mobile {
+        padding: 27px 0 22px;
+    }
+
+    &-wrapper {
+        position: relative;
+        width: calc(100% - 80px);
+        max-width: 1280px;
+
+        @include tablet {
+            width: 704px / 768px * 100%;
+        }
+
+        @include mobile {
+            width: 287px / 375px * 100%;
+        }
+    }
+
+    &-pattern {
+        position: absolute;
+        left: 784px / 1280px * 100%;
+        top: -496px;
+        width: 1000px / 1280px * 100%;
+
+        @include laptop {
+            top: -496px / 1440px * 100vw;
+        }
+
+        @include tablet {
+            left: 480px / 704px * 100%;
+            top: -264px / 768px * 100vw;
+            width: 448px / 704px * 100%;
+        }
+
+        @include mobile {
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+
+        &Aspect {
+            width: 100%;
+            height: 0;
+            padding-top: 100%;
+            background-image: url('~images/patternBig.png');
+            background-size: cover;
+            animation: show-pattern 0.7s both $ease-power2-out;
+
+            .pageIsLoading & {
+                animation: show-pattern 0.7s both $ease-power2-out 0.7s;
+            }
+
+            .pageIsLoading &:after {
+                animation: show-pattern-border 0.7s both $ease-power2-out 0.7s;
+            }
+
+            &:after {
+                content: '';
+                position: absolute;
+                border-radius: 50%;
+                border: 1px solid $color-border;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                animation: show-pattern-border 0.7s both $ease-power2-out;
+                opacity: 0.7;
+            }
+
+            @keyframes show-pattern {
+                0% {
+                    clip-path: circle(0% at 50% 50%);
+                }
+                100% {
+                    clip-path: circle(50% at 50% 50%);
+                }
+            }
+
+            @keyframes show-pattern-border {
+                0% {
+                    width: 0%;
+                    height: 0%;
+                }
+                100% {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            @include tablet {
+                background-image: url('~images/pattern.png');
+            }
+
+            @include mobile {
+                background-image: url('~images/pattern.png');
+            }
+        }
+    }
+
+    &-items {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        z-index: 1;
+    }
+
+    &-thumbs {
+        position: absolute;
+        left: 0;
+        top: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        z-index: 2;
+
+        @include tablet {
+            top: 200px;
+        }
+
+        @include mobile {
+            top: 0;
+            position: absolute;
+            left: 0;
+            flex-direction: row;
+            gap: 6px;
+            padding-top: calc(100% + 17px);
+        }
+
+        button {
+            position: relative;
+            display: block;
+            width: 16px;
+            height: 16px;
+
+            @include mobile {
+                width: 6px;
+                height: 6px;
+            }
+
+            &:after {
+                content: '';
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                border-radius: 100%;
+                top: 5px;
+                left: 5px;
+                transition: 0.15s background $ease-power2-out;
+                background: rgba($color-primary, 0.2);
+                @include mobile {
+                    top: 0;
+                    left: 0;
+                }
+            }
+
+            &.active:after {
+                background: rgba($color-primary, 1);
+            }
+        }
+    }
+
+    &-arrows {
+        position: absolute;
+        left: 50%;
+        margin-left: -24px;
+        top: 496px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+        z-index: 2;
+
+        @include laptop {
+            top: calc(41.8vw - 106px);
+        }
+
+        @include tablet {
+            top: calc(41.8vw - 106px);
+            gap: 16px;
+            margin-left: -16px;
+        }
+
+        @include mobile {
+            position: absolute;
+            left: auto;
+            right: 0;
+            margin-left: 0;
+            top: 0;
+            padding-top: 100%;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 12px;
+            button {
+                height: 40px;
+                width: 40px;
+            }
+        }
+    }
+}

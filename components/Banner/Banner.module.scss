@@ -1,0 +1,159 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.Banner {
+    position: relative;
+    display: flex;
+    width: calc(100% - 80px);
+    max-width: 1280px;
+    align-items: flex-start;
+    justify-content: center;
+    background: $color-primary;
+    border-radius: 8px;
+
+    @include tablet {
+        width: 728px / 768px * 100%;
+    }
+
+    @include mobile {
+        width: 100%;
+        padding: 176px 20px 0;
+        background: transparent;
+        border-radius: 0;
+    }
+
+    &-content {
+        position: relative;
+        padding: 152px 0 98px 0;
+        width: calc(100% - 80px);
+        max-width: 1040px;
+
+        @include tablet {
+            padding: 80px 0 63px 64px;
+            width: 100%;
+        }
+
+        @include mobile {
+            padding: 56px 24px 40px;
+            border-radius: 4px 100px 4px 4px;
+            width: 100%;
+            z-index: 1;
+            overflow: hidden;
+            background: $color-primary;
+        }
+    }
+
+    &-subtitle {
+        color: white;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        width: 360px;
+        font-weight: 500;
+
+        @include tablet {
+            margin-bottom: 8px;
+            width: 252px;
+        }
+
+        @include mobile {
+            margin-bottom: 16px;
+            width: 100%;
+        }
+    }
+
+    h1 {
+        color: white;
+        margin-bottom: 64px;
+        width: 360px;
+
+        @include tablet {
+            margin-bottom: 24px;
+            width: 252px;
+        }
+
+        @include mobile {
+            margin-bottom: 32px;
+            width: 100%;
+        }
+    }
+
+    &-link {
+        display: inline-block;
+    }
+
+    &-pattern {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        right: 0;
+        left: 332px;
+        height: 100%;
+        pointer-events: none;
+        mix-blend-mode: color-burn;
+
+        @include tablet {
+            left: auto;
+            width: 388px;
+        }
+
+        @include mobile {
+            left: auto;
+            width: 169px;
+            height: 169px;
+        }
+
+        &Image {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('~images/patternBanner.png');
+            background-size: cover;
+            background-position: 0 50%;
+
+            @include tablet {
+                background-image: url('~images/patternBannerMedium.png');
+            }
+
+            @include mobile {
+                background-image: url('~images/patternBannerSmall.png');
+                background-position: 0 100%;
+            }
+        }
+    }
+
+    &-picture {
+        position: absolute;
+        border-radius: 8px;
+        overflow: hidden;
+        top: 0;
+        right: 0;
+        width: 700px / 1280px * 100%;
+        height: 100%;
+        clip-path: circle(468px at 468px 310px);
+
+        @include tablet {
+            left: auto;
+            width: 332px;
+            clip-path: circle(236px at 236px 204px) ;
+        }
+
+        @include mobile {
+            z-index: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 376px;
+            border-radius: 4px;
+            clip-path: none;
+        }
+
+        img {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}

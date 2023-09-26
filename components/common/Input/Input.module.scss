@@ -1,0 +1,131 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.Input {
+    position: relative;
+    width: 100%;
+
+    &-label {
+        position: absolute;
+        left: 0;
+        top: -10px;
+        right: 16px;
+        bottom: 0;
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    label {
+        display: block;
+        position: absolute;
+        padding: 0 8px;
+        left: 17px;
+        top: 25px;
+        background-color: white;
+        color: $color-text-disabled;
+        transition: transform 0.2s $ease-power2-out,color 0.2s $ease-power2-out;
+        cursor: text;
+        transform-origin: left center;
+        white-space: nowrap;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.16px;
+        border-radius: 99px;
+
+        @include tablet {
+            padding: 0 8px;
+            left: 9px;
+            top: 22px;
+            font-size: 14px;
+            line-height: 22px;
+            letter-spacing: -0.2px;
+        }
+
+        @include mobile {
+            padding: 0 8px;
+            left: 16px;
+            top: 23px;
+            font-size: 18px;
+            line-height: 26px;
+            letter-spacing: -0.27px;
+        }
+    }
+
+    input {
+        display: block;
+        width: 100%;
+        height: 56px;
+        padding: 16px 80px 16px 24px;
+        border: 1px solid $color-border;
+        border-radius: 99px;
+        color: $color-text;
+        background-color: white;
+        outline: none;
+        transition: border-color 0.2s $ease-power2-out, 9999s background-color;
+        word-break: break-word;
+        -webkit-appearance: none;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.16px;
+
+        @include tablet {
+            height: 48px;
+            padding: 13px 68px 13px 16px;
+            font-size: 14px;
+            line-height: 22px;
+            letter-spacing: -0.2px;
+        }
+
+        @include mobile {
+            height: 56px;
+            padding: 15px 62px 15px 24px;
+            font-size: 18px;
+            line-height: 26px;
+            letter-spacing: -0.27px;
+        }
+    }
+
+    input:hover + &-label label {
+        color: $color-text;
+    }
+
+    input:hover {
+        border-color: $color-text;
+    }
+
+    input:focus + &-label label {
+        color: $color-primary;
+    }
+
+    input:focus {
+        border-color: $color-primary;
+        caret-color: $color-primary;
+    }
+
+    &.hasData label,
+    &.error label,
+    input:focus + &-label label {
+        transform: scale(0.85) translate(3px, -33px);
+
+        @include tablet {
+            transform: scale(0.85) translate(3px, -27px);
+        }
+
+        @include mobile {
+            transform: scale(0.85) translate(3px, -32px);
+        }
+    }
+
+    &.hasData label {
+        color: $color-text-secondary;
+    }
+
+    &.error input {
+        border-color: $color-error;
+        caret-color: $color-error;
+    }
+
+    &.error label {
+        color: $color-error !important;
+    }
+}

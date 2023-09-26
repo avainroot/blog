@@ -1,0 +1,9 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.PodcastsList {
+  display: grid;
+  width: 100%;
+  margin: 0 0 40px;
+  gap: 40px;
+}

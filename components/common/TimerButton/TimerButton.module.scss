@@ -1,0 +1,103 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.TimerButton {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include tablet {
+        width: 32px;
+        height: 32px;
+    }
+
+    &[data-direction="right"] svg:first-child, 
+    &[data-direction="right"] img {
+        transform: scaleX(-1);
+    }
+
+    &.has-timer svg:last-child circle:last-child {
+        animation: progress 0s both infinite linear;
+        opacity: 1;
+    }
+
+    &.has-timer.paused svg:last-child circle:last-child {
+        animation-play-state: paused;
+    }
+
+    @keyframes progress {
+        0% {
+            stroke-dasharray: 0 0 0 146.703369140625;
+        }
+
+        95% {
+            stroke-dasharray: 0 0 146.703369140625 0;
+        }
+
+        100% {
+            stroke-dasharray: 0 146.703369140625 0 0;
+        }
+    }
+
+    img,
+    svg:first-child 
+    {
+        width: 6px;
+        height: 10px;
+    }
+
+    svg:last-child {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        transform: rotate(-90deg);
+
+        circle:first-child {
+            stroke: $color-border;
+            stroke-width: 1px;
+            fill: none;
+
+            @include tablet {
+                stroke-width: 1.5px;
+            }
+
+
+            .isPointer & {
+                transition: 0.2s stroke $ease-power2-out;
+            }
+        }
+
+        circle:last-child {
+            stroke-dasharray: 0 0;
+            stroke-dashoffset: 0;
+            stroke: $color-primary;
+            stroke-width: 1px;
+            fill: none;
+            opacity: 0;
+
+            @include tablet {
+                stroke-width: 1.5px;
+            }
+        }
+    }
+
+    &:hover svg:last-child circle:last-child,
+    &:active svg:last-child circle:last-child {
+        opacity: 0;
+    }
+
+    &:hover svg:last-child circle:first-child,
+    &:active svg:last-child circle:first-child {
+        stroke: $color-primary;
+    }
+
+}

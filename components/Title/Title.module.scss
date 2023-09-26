@@ -1,0 +1,23 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+
+.title {
+  width: 100%;
+  max-width: 713px;
+  text-align: center;
+  color: $color-primary;
+  margin: 40px 0;
+  @include minTablet {
+    margin: 56px 0;
+  }
+
+  @include tablet {
+    width: 592px / 768px * 100%;
+  }
+
+  @include mobile {
+    width: 334px / 375px * 100%;
+  }
+
+}

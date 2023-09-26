@@ -1,0 +1,132 @@
+@import 'styles/const.scss';
+@import 'styles/mixins.scss';
+
+.ArticleBlockText {
+    text-align: center;
+    position: relative;
+    margin: 48px 0;
+    color: $color-text;
+
+    @include tablet {
+        margin: 10px 0;
+    }
+
+    @include mobile {
+        margin: 32px 0;
+    }
+
+    &-wrapper {
+        display: inline-block;
+        text-align: left;
+        width: 640px;
+
+        @include tablet {
+            width: 360px / 768px * 100%;
+        }
+
+        @include mobile {
+            width: 286px / 375px * 100%;
+        }
+    }
+
+
+    a {
+        color: $color-primary;
+        text-decoration: none;
+
+        @include tablet {
+            font-weight: 500;
+        }
+
+        @include mobile {
+            font-weight: 500;
+        }
+
+        .isPointer &:hover,
+        .isTouch &:active {
+            text-decoration: underline;
+        }
+    }
+
+    p mark {
+        position: relative;
+        float: left;
+        display: inline-block;
+        color: $color-primary;
+        text-align: center;
+        font-weight: 500;
+        background: transparent;
+        background-size: contain;
+        background-image: url('~images/firstLetterBig.svg');
+        width: 80px;
+        height: 80px;
+        font-size: 48px;
+        line-height: 70px;
+        top: 9px;
+        margin-right: 25px;
+        margin-bottom: 8px;
+
+        @include tablet {
+            width: 64px;
+            height: 64px;
+            font-size: 32px;
+            line-height: 58px;
+            top: 13px;
+            margin-right: 16px;
+            margin-bottom: 12px;
+        }
+
+        @include mobile {
+            width: 64px;
+            height: 64px;
+            font-size: 35px;
+            line-height: 56px;
+            top: 9px;
+            margin-right: 16px;
+            margin-bottom: 7px;
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            background-size: contain;
+            background-image: url('~images/firstLetterSmall.svg');
+            width: 16px;
+            height: 16px;
+            top: 0px;
+            right: 100%;
+
+            @include mobile {
+                display: none;
+            }
+        }
+    }
+
+
+    p + p {
+        margin-top: 32px;
+
+        @include tablet {
+            margin-top: 22px;
+        }
+
+        @include mobile {
+            margin-top: 26px;
+        }
+    }
+
+    ul, ol {
+        li {
+            &::marker {
+                color: $color-primary;
+            }
+        }
+    }
+    ul {
+        list-style: disc;
+    }
+    ol {
+        list-style: decimal;
+    }
+
+}
